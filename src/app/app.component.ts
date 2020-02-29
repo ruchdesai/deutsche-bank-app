@@ -24,11 +24,13 @@ export class AppComponent implements OnDestroy {
   }
 
   handleSelectedOption(e) {
-    if (this.countries === undefined) {
-      this.subscriptions.add(this.countriesService.getCountries(e.target.value).subscribe((res) => {
-        this.countries = res;
-      }));
-    }
+    this.regions.filter(reg => {
+      if (reg.demonym === e.target.value) {
+        this.subscriptions.add(this.countriesService.getCountries(e.target.value).subscribe((res) => {
+          this.countries = res;
+        }));
+      }
+    });
 
     if (!!this.countries && this.countries.length > 0) {
       this.countries.filter(country => {
