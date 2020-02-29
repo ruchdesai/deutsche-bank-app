@@ -3,7 +3,7 @@
 		<p>Region:</p>
 		<app-select-dropdown [content]="regions" (selectedOption)="handleSelectedOption($event)"></app-select-dropdown>
 	</div>
-	<div class="countries">
+	<div class="countries" *ngIf="countries.length > 0">
 		<p>Country:</p>
 		<app-select-dropdown [content]="countries" (selectedOption)="handleSelectedOption($event)"></app-select-dropdown>
 	</div>
