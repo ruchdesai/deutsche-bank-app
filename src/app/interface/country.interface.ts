@@ -39,6 +39,4 @@ export interface Country {
     cioc: string;
 };
 
-export interface Countries {
-    countries: Country[];
-};
+export interface Countries extends Array<Country> {};

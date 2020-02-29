@@ -25,7 +25,7 @@ export class AppComponent implements OnDestroy {
    * @type {*}
    * @memberof AppComponent
    */
-  countries: any = [];
+  countries: Array<Country>;
   /**
    * Country details object
    *
