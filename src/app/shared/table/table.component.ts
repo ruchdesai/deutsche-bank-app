@@ -7,6 +7,12 @@ import { Component, Input } from '@angular/core';
 })
 export class TableComponent {
 
+  /**
+   * Country details data
+   *
+   * @type {*}
+   * @memberof TableComponent
+   */
   @Input() content: any;
 
 }

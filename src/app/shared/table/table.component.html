@@ -14,7 +14,7 @@
                 <td>{{content?.name}}</td>
                 <td>{{content?.capital}}</td>
                 <td>{{content?.population | number: '2.0'}}</td>
-                <td>Code: {{content?.currencies[0].code}}, Symbol: {{content?.currencies[0].symbol}}</td>
+                <td>Code: {{content?.currencies[0].code}}, Symbol: {{content?.currencies[0].symbol || '--'}}</td>
                 <td><img src="{{content?.flag}}" height="30" alt="Country Flag"></td>
             </tr>
         </tbody>

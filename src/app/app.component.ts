@@ -34,7 +34,7 @@ export class AppComponent implements OnDestroy {
    */
   countryDetails: Country;
   /**
-   * subscriptions to avoid memory leak
+   * Subscriptions collection
    *
    * @private
    * @memberof AppComponent
@@ -43,14 +43,19 @@ export class AppComponent implements OnDestroy {
 
   constructor(private countriesService: CountriesService) {}
 
+  /**
+   * destroys subscription to avoid memory leaks
+   *
+   * @memberof AppComponent
+   */
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
 
   /**
-   * Handles dropdown values
+   * Gets list of countries for selected region
    *
-   * @param {string} value region | country
+   * @param {string} value region
    * @memberof AppComponent
    */
   getCountriesForRegion(value: string): void {
@@ -65,6 +70,12 @@ export class AppComponent implements OnDestroy {
     });
   }
 
+  /**
+   * Gets selected country's details
+   *
+   * @param {string} value country
+   * @memberof AppComponent
+   */
   getCountryDetails(value: string) {
     if (!!this.countries && this.countries.length > 0) {
       this.countries.filter((country: Country) => {
