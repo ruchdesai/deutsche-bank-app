@@ -33,8 +33,8 @@ export interface Country {
     regionalBlocs: {
         acronym: string,
         name: string,
-        otherAcronyms: [],
-        otherNames: []
+        otherAcronyms: any,
+        otherNames: any
     }[];
     cioc: string;
 };

@@ -22,4 +22,11 @@ describe('SelectDropdownComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should should emit selected option', () => {
+    spyOn(component.selectedOption, 'emit').and.callThrough();
+    component.handleSelection('europe');
+    expect(component.selectedOption.emit).toHaveBeenCalled();
+    expect(component.selectedOption.emit).toHaveBeenCalledWith('europe');
+  });
 });
