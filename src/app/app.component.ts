@@ -53,18 +53,22 @@ export class AppComponent implements OnDestroy {
    * @param {string} value region | country
    * @memberof AppComponent
    */
-  handleSelectedOption(value: string): void {
+  getCountriesForRegion(value: string): void {
     this.regions.filter(reg => {
       if (reg.demonym === value) {
-        this.subscriptions.add(this.countriesService.getCountries(value).subscribe((res: Countries) => {
-          this.countries = res;
-        }));
+        this.subscriptions.add(this.countriesService.getCountries(value)
+          .subscribe((res: Countries) => {
+            this.countries = res;
+          })
+        );
       }
     });
+  }
 
+  getCountryDetails(value: string) {
     if (!!this.countries && this.countries.length > 0) {
       this.countries.filter((country: Country) => {
-        if (value === country.demonym) {
+        if (country.demonym === value) {
           this.countryDetails = country;
         }
       });

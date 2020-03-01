@@ -1,11 +1,11 @@
 <div class="container pt-3">
 	<div class="region">
 		<p>Region:</p>
-		<app-select-dropdown [content]="regions" (selectedOption)="handleSelectedOption($event)"></app-select-dropdown>
+		<app-select-dropdown [content]="regions" (selectedOption)="getCountriesForRegion($event)"></app-select-dropdown>
 	</div>
 	<div class="countries" *ngIf="countries">
 		<p>Country:</p>
-		<app-select-dropdown [content]="countries" (selectedOption)="handleSelectedOption($event)"></app-select-dropdown>
+		<app-select-dropdown [content]="countries" (selectedOption)="getCountryDetails($event)"></app-select-dropdown>
 	</div>
 </div>
 
