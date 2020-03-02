@@ -2,9 +2,28 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
 
+## Steps to install and run the project
+
+1. Run `git clone https://github.com/ruchdesai/deutsche-bank-app.git`
+2. Run `cd deutsche-bank-app`
+3. Run `npm install` to install necessary dependencies
+4. Run `npm run start` to run the project
+5. Navigate to `http://localhost:4200/`
+6. Run `npm run test` to run test
+
+## Project description
+
+Landing page shows one dropdown to select region, depending on which region you select you will then see another dropdown with countries of that region.
+Once you select country from the dropdown, details of that country will be displayed in the table below.
+
+Project has shared components (select-drodpown && table) has one service (countries.service) to get all the countries of the selected region.
+we have Country and Countries interface to check the response type.
+
+Also written some unit test with code coverage of 100%.
+
 ## Development server
 
-Run `npm install` to install required node packages, then Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
