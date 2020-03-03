@@ -34,7 +34,7 @@ describe('AppComponent', () => {
   });
 
   it('should getCountries endpoint and get countries accordingly to region selected', () => {
-    const cService = TestBed.get(CountriesService);
+    const cService = TestBed.inject(CountriesService);
     spyOn(cService, 'getCountries').and.callFake(() => {
       return of(MOCK_COUNTRIES);
     });

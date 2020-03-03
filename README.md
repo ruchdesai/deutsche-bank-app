@@ -21,6 +21,16 @@ we have Country and Countries interface to check the response type.
 
 Also written some unit test with code coverage of 100%.
 
+## NGRX Implementation
+
+I have created a separate branch for NgRx implementation `feature/ngrx`, reason for separate branch is because I haven't had opportunity to work with NgRx commercially yet, but this is something am looking to learn and work on.
+
+Didn't want to break the working example on master so created separate branch.
+
+I did manage to implement NgRx to the best of my knowledge, if given time to train and look through courses am sure I can easily grasp the knowledge and optimise the code further.
+
+I do have theoretical understanding on NgRx as to what it's used for and why we should use it. But practical is still work in progress and won't be long before I have a complete knowledge of the NgRx library.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
