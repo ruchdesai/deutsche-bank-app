@@ -60,7 +60,10 @@ export class AppComponent implements OnDestroy {
    *
    */
   getCountriesByRegion(region: string): void {
-    this.subscriptions.add(this.country$.pipe(map(data => this.countries = data.Countries)).subscribe());
+    this.subscriptions.add(this.country$.pipe(map(data => {
+      this.countries = data.Countries;
+      this.countryDetails = null;
+    })).subscribe());
     this.store.dispatch(CountryActions.BeginGetCountriesByRegionAction({region}));
   }
 
