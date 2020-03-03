@@ -62,6 +62,7 @@ export class AppComponent implements OnDestroy {
     this.subscriptions.add(this.countriesService.getCountries(value)
       .subscribe((res: Countries) => {
         this.countries = res;
+        this.countryDetails = null;
       })
     );
   }
