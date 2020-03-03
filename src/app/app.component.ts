@@ -55,11 +55,11 @@ export class AppComponent implements OnDestroy {
   /**
    * Gets list of countries for selected region
    *
-   * @param {string} value region
+   * @param {string} region asia|europe
    * @memberof AppComponent
    */
-  getCountriesForRegion(value: string): void {
-    this.subscriptions.add(this.countriesService.getCountries(value)
+  getCountriesForRegion(region: string): void {
+    this.subscriptions.add(this.countriesService.getCountries(region)
       .subscribe((res: Countries) => {
         this.countries = res;
         this.countryDetails = null;
