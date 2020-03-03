@@ -1,7 +1,12 @@
 import { Component, OnDestroy } from '@angular/core';
 import { CountriesService } from './services/countries/countries.service';
 import { SubSink } from 'subsink';
-import { Country, Countries } from './interface/country.interface';
+import Country, { Countries } from './interface/country.interface';
+import CountryState from './services/countries/country.state';
+import * as CountryActions from './services/countries/country.action';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -40,8 +45,14 @@ export class AppComponent implements OnDestroy {
    * @memberof AppComponent
    */
   private subscriptions = new SubSink();
+  country$: Observable<CountryState>;
 
-  constructor(private countriesService: CountriesService) {}
+  constructor(
+    private countriesService: CountriesService,
+    private store: Store<{ countries: CountryState }>
+  ) {
+    this.country$ = store.pipe(select('countries'));
+  }
 
   /**
    * destroys subscription to avoid memory leaks
@@ -50,6 +61,17 @@ export class AppComponent implements OnDestroy {
    */
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  getCountries() {
+    this.country$
+      .pipe(
+        map(x => {
+          this.countries = x.Countries;
+        })
+      ).subscribe();
+
+      this.store.dispatch(CountryActions.BeginGetCountryAction());
   }
 
   /**
