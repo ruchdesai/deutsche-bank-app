@@ -13,7 +13,6 @@ export class AppComponent implements OnDestroy {
   /**
    * Array of regions
    *
-   * @memberof AppComponent
    */
   regions = [
     { demonym: 'asia', name: 'Asia' },
@@ -22,22 +21,16 @@ export class AppComponent implements OnDestroy {
   /**
    * List of countries
    *
-   * @type {*}
-   * @memberof AppComponent
    */
   countries: Array<Country>;
   /**
    * Country details object
    *
-   * @type {Country}
-   * @memberof AppComponent
    */
   countryDetails: Country;
   /**
    * Subscriptions collection
    *
-   * @private
-   * @memberof AppComponent
    */
   private subscriptions = new SubSink();
 
@@ -46,7 +39,6 @@ export class AppComponent implements OnDestroy {
   /**
    * destroys subscription to avoid memory leaks
    *
-   * @memberof AppComponent
    */
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
@@ -55,8 +47,6 @@ export class AppComponent implements OnDestroy {
   /**
    * Gets list of countries for selected region
    *
-   * @param {string} region asia|europe
-   * @memberof AppComponent
    */
   getCountriesForRegion(region: string): void {
     this.subscriptions.add(this.countriesService.getCountries(region)
@@ -70,8 +60,6 @@ export class AppComponent implements OnDestroy {
   /**
    * Gets selected country's details
    *
-   * @param {string} value country
-   * @memberof AppComponent
    */
   getCountryDetails(value: string): void {
     if (!!this.countries && this.countries.length > 0) {
