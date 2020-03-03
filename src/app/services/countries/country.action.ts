@@ -1,9 +1,9 @@
 import { createAction, props } from '@ngrx/store';
 import Country from '../../interface/country.interface';
 
-export const GetCountryAction = createAction('[Country] - Get Country');
-export const BeginGetCountryAction = createAction('[Country] - Begin Get Country');
-export const SuccessGetCountryAction = createAction(
-  '[Country] - Success Get Country',
-  props<{ payload: Country[] }>()
+export const GetCountriesAction = createAction('[Countries] - Get Countries');
+export const BeginGetCountriesByRegionAction = createAction('[Countries] - Begin Get Countries', props<{ region: string }>());
+export const SuccessGetCountriesAction = createAction(
+  '[Countries] - Success Get Countries',
+  props<{ countries: Country[] }>()
 );

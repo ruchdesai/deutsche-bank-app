@@ -63,15 +63,15 @@ export class AppComponent implements OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  getCountries() {
-    this.country$
-      .pipe(
-        map(x => {
-          this.countries = x.Countries;
-        })
-      ).subscribe();
-
-      this.store.dispatch(CountryActions.BeginGetCountryAction());
+  /**
+   * Gets Countries by region (NgRx implementation)
+   *
+   * @param {string} region
+   * @memberof AppComponent
+   */
+  getCountriesByRegion(region: string): void {
+    this.subscriptions.add(this.country$.pipe(map(data => this.countries = data.Countries)).subscribe());
+    this.store.dispatch(CountryActions.BeginGetCountriesByRegionAction({region}));
   }
 
   /**
@@ -80,16 +80,12 @@ export class AppComponent implements OnDestroy {
    * @param {string} value region
    * @memberof AppComponent
    */
-  getCountriesForRegion(value: string): void {
-    this.regions.filter(reg => {
-      if (reg.demonym === value) {
-        this.subscriptions.add(this.countriesService.getCountries(value)
-          .subscribe((res: Countries) => {
-            this.countries = res;
-          })
-        );
-      }
-    });
+  getCountriesForRegion(region: string): void {
+    this.subscriptions.add(this.countriesService.getCountries(region)
+      .subscribe((res: Countries) => {
+        this.countries = res;
+      })
+    );
   }
 
   /**
@@ -98,7 +94,7 @@ export class AppComponent implements OnDestroy {
    * @param {string} value country
    * @memberof AppComponent
    */
-  getCountryDetails(value: string) {
+  getCountryDetails(value: string): void {
     if (!!this.countries && this.countries.length > 0) {
       this.countries.filter((country: Country) => {
         if (country.demonym === value) {

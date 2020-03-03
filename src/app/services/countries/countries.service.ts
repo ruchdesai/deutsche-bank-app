@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 import * as CountryActions from './country.action';
 import Country from '../../interface/country.interface';
 
@@ -27,11 +27,11 @@ export class CountriesService {
 
   Getcountries$: Observable<Action> = createEffect(() =>
     this.action$.pipe(
-      ofType(CountryActions.BeginGetCountryAction),
+      ofType(CountryActions.BeginGetCountriesByRegionAction),
       mergeMap(action =>
-        this.http.get(`https://restcountries.eu/rest/v2/region/europe`).pipe(
+        this.http.get(`https://restcountries.eu/rest/v2/region/${action.region}`).pipe(
           map((data: Country[]) => {
-            return CountryActions.SuccessGetCountryAction({ payload: data });
+            return CountryActions.SuccessGetCountriesAction({ countries: data });
           })
         )
       )
