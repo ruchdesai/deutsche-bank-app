@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import * as CountryActions from './country.action';
 import Country from '../../interface/country.interface';
 
@@ -29,7 +29,7 @@ export class CountriesService {
     this.action$.pipe(
       ofType(CountryActions.BeginGetCountriesByRegionAction),
       switchMap(action =>
-        this.http.get(`https://restcountries.eu/rest/v2/region/${action.region}`).pipe(
+        this.getCountries(action.region).pipe(
           map((data: Country[]) => {
             return CountryActions.SuccessGetCountriesAction({ countries: data });
           })
