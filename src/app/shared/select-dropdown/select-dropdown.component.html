@@ -1,6 +1,6 @@
 <div class="form-group">
     <select class="form-control" (change)="handleSelection($event.target.value)">
-        <option value="" selected>Select</option>
+        <option value="" selected disabled>Select</option>
         <option *ngFor="let item of content" [value]="item.demonym">{{item.name}}</option>
     </select>
 </div>
