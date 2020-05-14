@@ -12,6 +12,8 @@ import { CountryReducer } from './services/countries/country.reducer';
 import { AppComponent } from './app.component';
 
 import { CountriesService } from './services/countries/countries.service';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { CountriesService } from './services/countries/countries.service';
     HttpClientModule,
     SharedModule,
     StoreModule.forRoot({ countries: CountryReducer }),
-    EffectsModule.forRoot([CountriesService])
+    EffectsModule.forRoot([CountriesService]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
