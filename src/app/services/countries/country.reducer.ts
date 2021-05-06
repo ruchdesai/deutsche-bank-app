@@ -6,9 +6,8 @@ export const intialState = initializeState();
 
 const reducer = createReducer(
   intialState,
-  on(CountryActions.GetCountriesAction, state => state),
-  on(CountryActions.SuccessGetCountriesAction, (state: CountryState, { countries }) => {
-    return { ...state, Countries: countries };
+  on(CountryActions.GetCountriesSuccess, (state: CountryState, { countries }) => {
+    return { ...state, countries: countries };
   })
 );
 

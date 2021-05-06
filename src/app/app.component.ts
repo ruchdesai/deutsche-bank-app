@@ -60,11 +60,17 @@ export class AppComponent implements OnDestroy {
    *
    */
   getCountriesByRegion(region: string): void {
-    this.subscriptions.add(this.country$.pipe(map(data => {
-      this.countries = data.Countries;
+    if (region) {
+      this.subscriptions.add(this.country$.pipe(map(data => {
+        this.countries = data.countries;
+        this.countryDetails = null;
+      })).subscribe());
+
+      this.store.dispatch(CountryActions.GetRegion({ region }));
+    } else {
+      this.countries = null;
       this.countryDetails = null;
-    })).subscribe());
-    this.store.dispatch(CountryActions.BeginGetCountriesByRegionAction({region}));
+    }
   }
 
   /**
@@ -72,25 +78,34 @@ export class AppComponent implements OnDestroy {
    *
    */
   getCountriesForRegion(region: string): void {
-    this.subscriptions.add(this.countriesService.getCountries(region)
-      .subscribe((res: Countries) => {
-        this.countries = res;
-        this.countryDetails = null;
-      })
-    );
+    if (region) {
+      this.subscriptions.add(this.countriesService.getCountries(region)
+        .subscribe((res: Countries) => {
+          this.countries = res;
+          this.countryDetails = null;
+        })
+      );
+    } else {
+      this.countries = null;
+      this.countryDetails = null;
+    }
   }
 
   /**
    * Gets selected country's details
    *
    */
-  getCountryDetails(value: string): void {
-    if (!!this.countries && this.countries.length > 0) {
-      this.countries.filter((country: Country) => {
-        if (country.demonym === value) {
-          this.countryDetails = country;
-        }
-      });
+  getCountryDetails(selectedCountry: string): void {
+    if (selectedCountry) {
+      if (!!this.countries && this.countries.length > 0) {
+        this.countries.filter((country: Country) => {
+          if (country.demonym === selectedCountry) {
+            this.countryDetails = country;
+          }
+        });
+      }
+    } else {
+      this.countryDetails = null;
     }
   }
 }

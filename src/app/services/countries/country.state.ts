@@ -1,9 +1,9 @@
 import Country from '../../interface/country.interface';
 
 export default class CountryState {
-  Countries: Array<Country>;
+  countries: Array<Country>;
 }
 
 export const initializeState = (): CountryState => {
-  return { Countries: Array<Country>() };
+  return { countries: Array<Country>() };
 };

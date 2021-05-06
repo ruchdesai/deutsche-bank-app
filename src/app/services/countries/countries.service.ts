@@ -25,13 +25,13 @@ export class CountriesService {
     return this.http.get(`https://restcountries.eu/rest/v2/region/${region}`);
   }
 
-  Getcountries$: Observable<Action> = createEffect(() =>
+  getcountries$: Observable<Action> = createEffect(() =>
     this.action$.pipe(
-      ofType(CountryActions.BeginGetCountriesByRegionAction),
+      ofType(CountryActions.GetRegion),
       switchMap(action =>
         this.getCountries(action.region).pipe(
-          map((data: Country[]) => {
-            return CountryActions.SuccessGetCountriesAction({ countries: data });
+          map((countries: Country[]) => {
+            return CountryActions.GetCountriesSuccess({ countries });
           })
         )
       )

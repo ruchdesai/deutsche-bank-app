@@ -1,14 +1,12 @@
 import { createAction, props } from '@ngrx/store';
 import Country from '../../interface/country.interface';
 
-export const GetCountriesAction = createAction(
-  '[Countries] - Get Countries'
-);
-export const BeginGetCountriesByRegionAction = createAction(
-  '[Countries] - Begin Get Countries',
+export const GetRegion = createAction(
+  '[Countries] - Get Region',
   props<{ region: string }>()
 );
-export const SuccessGetCountriesAction = createAction(
-  '[Countries] - Success Get Countries',
+
+export const GetCountriesSuccess = createAction(
+  '[Countries] - Get Countries Success',
   props<{ countries: Country[] }>()
 );
